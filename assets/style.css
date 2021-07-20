@@ -50,3 +50,28 @@ h1 {
 	letter-spacing: -0.8px;
 }
 
+/* List */
+.todo-list__wrapper {
+	width: 100%;
+	padding-left: 15px;
+	flex: 1;
+}
+
+.todo-list__container {
+	width: 100%;
+}
+
+.todo-list__item {
+	width: 100%;
+	padding: 5px;
+	padding-left: 0;
+	list-style: none;
+	z-index: 9;
+
+	border: 1px solid blue;
+}
+
+.todo-list__item:hover {
+	transform: translateX(-35px);
+}
+
