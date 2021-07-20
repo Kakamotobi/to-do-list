@@ -60,26 +60,18 @@ h1 {
 
 .todo-list__container {
 	width: 100%;
-}
-
-.todo-list__item-wrapper {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	position: relative;
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .todo-list__item {
 	width: 100%;
 	padding: 5px;
 	padding-left: 0;
+	position: relative;
 	list-style: none;
-  cursor: pointer;
-  border: 1px solid blue;
 }
 
-.todo-list__item-wrapper:hover > .todo-list__item-clear-btn {
+.todo-list__item:hover > .todo-list__item-clear-btn {
 	transform: translateX(-50px);
 }
 
