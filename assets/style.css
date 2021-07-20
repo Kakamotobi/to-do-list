@@ -62,17 +62,41 @@ h1 {
 	width: 100%;
 }
 
+.todo-list__item-wrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+  overflow: hidden;
+}
+
 .todo-list__item {
 	width: 100%;
 	padding: 5px;
 	padding-left: 0;
 	list-style: none;
-	z-index: 9;
+  cursor: pointer;
+  border: 1px solid blue;
+}
+
+.todo-list__item-wrapper:hover > .todo-list__item-clear-btn {
+	transform: translateX(-50px);
+}
+
+.todo-list__item-clear-btn {
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	right: -25px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 	transition: 250ms;
 }
 
-.todo-list__item:hover {
-	transform: translateX(-35px);
+.todo-list__item-clear-btn-img {
+	height: 100%;
+	width: 100%;
 }
 
 /* Add Section */
@@ -107,21 +131,18 @@ h1 {
 }
 
 .todo-list__add-btn {
-	position: absolute;
-	top: 3px;
-	right: 25px;
+	width: 20px;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
 }
 
-.fa-plus {
-	font-size: 18px;
+.todo-list__add-btn-img {
 	color: var(--grey);
 	transition: 200ms;
 }
 
-.fa-plus:hover {
+.todo-list__add-btn-img:hover {
 	color: var(--black);
 }
 
