@@ -11,3 +11,32 @@ html {
 	box-sizing: border-box;
 }
 
+body {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(
+		to bottom right,
+		var(--drkGrey),
+		var(--drkOrange)
+	);
+	font-family: "Inter", sans-serif;
+}
+
+.todo-list {
+	min-height: 400px;
+	min-width: 400px;
+	padding: 20px;
+	padding-right: 0;
+	display: flex;
+	flex-direction: column;
+
+	background: linear-gradient(
+		to bottom left,
+		var(--drkGrey),
+		rgba(219, 66, 36, 0.322)
+	);
+	border-radius: 5px;
+}
+
