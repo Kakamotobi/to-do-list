@@ -40,3 +40,13 @@ body {
 	border-radius: 5px;
 }
 
+/* Title */
+header {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+h1 {
+	letter-spacing: -0.8px;
+}
+
