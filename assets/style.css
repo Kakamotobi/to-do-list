@@ -27,7 +27,7 @@ body {
 .todo-list {
 	min-height: 400px;
 	width: 100%;
-	max-width: 400px;
+	max-width: 350px;
 	padding: 20px;
 	padding-right: 0;
 	display: flex;
@@ -54,7 +54,7 @@ h1 {
 /* List */
 .todo-list__wrapper {
 	width: 100%;
-	padding-left: 15px;
+	padding-left: 5px;
 	flex: 1;
 }
 
@@ -126,7 +126,14 @@ h1 {
 	width: 20px;
 	background-color: transparent;
 	border: none;
+	opacity: 0.4;
 	cursor: pointer;
+	pointer-events: none;
+}
+
+.todo-list__add-btn.active {
+	opacity: 1;
+	pointer-events: auto;
 }
 
 .todo-list__add-btn-img {
@@ -153,7 +160,7 @@ footer {
 	font-size: 0.8rem;
 }
 
-.todo-list__clear-btn {
+.todo-list__clear-all-btn {
 	padding: 4px 5px;
 	background-size: 200% 200%;
 	background-image: linear-gradient(to right, var(--drkGrey), var(--drkOrange));
@@ -166,7 +173,7 @@ footer {
 	transition: 200ms;
 }
 
-.todo-list__clear-btn:hover {
+.todo-list__clear-all-btn:hover {
 	background-position: right center;
 }
 
