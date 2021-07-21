@@ -20,12 +20,12 @@
 		/>
 		<!-- CSS -->
 		<link rel="stylesheet" href="assets/style.css" />
-		<title>Document</title>
+		<title>To Do List</title>
 	</head>
 	<body>
 		<main class="todo-list">
 			<header>
-				<h1 class="todo-list__title">To-Do List</h1>
+				<h1 class="todo-list__title">To Do List</h1>
 			</header>
 
 			<section class="todo-list__wrapper">
@@ -36,16 +36,23 @@
 				<input
 					type="text"
 					class="todo-list__add-input"
-					placeholder="Add a new to-do"
+					placeholder="Add a new to do"
 				/>
-				<button type="button" clas="todo-list__add-btn">
-					<i class="far fa-plus-square"></i>
+				<button type="button" class="todo-list__add-btn">
+					<img
+						src="assets/images/plus-solid.svg"
+						alt="Add Button"
+						class="todo-list__add-btn-img"
+					/>
 				</button>
 			</section>
 
 			<footer>
-				<p class="todo-list__desc"></p>
-				<button type="button" class="todo-list__clear-btn">Clear All</button>
+				<em class="todo-list__desc"
+					>You have <span class="todo-list__remaining"></span> tasks
+					remaning.</em
+				>
+				<button type="button" class="todo-list__clear-all-btn">Clear All</button>
 			</footer>
 		</main>
 
