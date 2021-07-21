@@ -7,7 +7,6 @@
 ## Features
 
 - Users can add and clear todos, which can be accessed again through local storage.
--
 
 ## Demo
 
