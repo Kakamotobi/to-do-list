@@ -164,7 +164,7 @@ footer {
 	padding: 4px 5px;
 	background-size: 200% 200%;
 	background-image: linear-gradient(to right, var(--drkGrey), var(--drkOrange));
-	border: 1px solid black;
+	border: 1px solid var(--black);
 	border: none;
 	box-shadow: 1px 2px 3px 1px var(--drkGrey);
 	border-radius: 2px;
