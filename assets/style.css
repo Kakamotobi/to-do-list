@@ -109,6 +109,7 @@ h1 {
 	border: none;
 	border-bottom: 1px solid var(--grey);
 	outline: none;
+	font-size: 16px;
 	transition: 250ms;
 }
 
