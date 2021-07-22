@@ -26,14 +26,10 @@ newTodoAddBtn.addEventListener("click", () => {
 	checkAndParseLocalStorage();
 
 	// Add new todo in local storage
-	todoListArray.push(newTodoInput.value);
-	localStorage.setItem("todoList", JSON.stringify(todoListArray));
+	addToLocalStorage();
 
-	// Display the new list
-	todoListContainer.innerHTML = "";
-	todoListArray.forEach((el) => {
-		displayTodo(el);
-	});
+	// Render the new list
+	renderTodoList();
 
 	// Reset input and add btn style
 	newTodoInput.value = "";
@@ -64,12 +60,29 @@ todoListContainer.addEventListener("click", (evt) => {
 	}
 });
 
-// Add todo btn styling
-newTodoInput.addEventListener("keyup", () => {
+newTodoInput.addEventListener("keyup", (evt) => {
+	// Add todo btn styling
 	if (newTodoInput.value) {
 		newTodoAddBtn.classList.add("active");
 	} else {
 		newTodoAddBtn.classList.remove("active");
+	}
+
+	// Allow "Enter" key to add todo
+	if (evt.key === "Enter") {
+		checkAndParseLocalStorage();
+
+		// Add new todo in local storage
+		addToLocalStorage();
+
+		// Display the new list
+		renderTodoList();
+
+		// Reset input and add btn style
+		newTodoInput.value = "";
+		newTodoAddBtn.classList.remove("active");
+
+		todosRemaining.textContent = todoListArray.length;
 	}
 });
 
@@ -95,6 +108,14 @@ function checkAndParseLocalStorage() {
 		todoListArray = [];
 	} else {
 		todoListArray = JSON.parse(getLocalStorage);
+	}
+}
+
+//  --Add to local storage-- //
+function addToLocalStorage() {
+	if (newTodoInput.value.trim() !== "") {
+		todoListArray.push(newTodoInput.value.trim());
+		localStorage.setItem("todoList", JSON.stringify(todoListArray));
 	}
 }
 
