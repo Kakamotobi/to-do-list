@@ -6,39 +6,60 @@ const newTodoAddBtn = document.querySelector(".todo-list__add-btn");
 const todosRemaining = document.querySelector(".todo-list__remaining");
 const clearAllBtn = document.querySelector(".todo-list__clear-all-btn");
 
+let todoListArray;
+
 // -----Event Listeners----- //
-// Load todos
+// --Load existing todos-- //
 document.addEventListener("DOMContentLoaded", () => {
 	// Check local storage
-	let todoListArray;
-	let getLocalStorage = localStorage.getItem("todoList");
-	if (getLocalStorage === null) {
-		todoListArray = [];
-	} else {
-		todoListArray = JSON.parse(getLocalStorage);
-	}
+	checkAndParseLocalStorage();
 
-	// Display todo list stored in local storage
+	// Render todo list stored in local storage
+	renderTodoList();
+
+	// Display number of todos remaining
+	todosRemaining.textContent = todoListArray.length;
+});
+
+// --Add new todo-- //
+newTodoAddBtn.addEventListener("click", () => {
+	checkAndParseLocalStorage();
+
+	// Add new todo in local storage
+	todoListArray.push(newTodoInput.value);
+	localStorage.setItem("todoList", JSON.stringify(todoListArray));
+
+	// Display the new list
+	todoListContainer.innerHTML = "";
 	todoListArray.forEach((el) => {
 		displayTodo(el);
 	});
+
+	// Reset input and add btn style
+	newTodoInput.value = "";
+	newTodoAddBtn.classList.remove("active");
 
 	todosRemaining.textContent = todoListArray.length;
 });
 
 // Clear todo
 todoListContainer.addEventListener("click", (evt) => {
+	// Delegate event to image button
 	if (evt.target.nodeName === "IMG") {
-		let getLocalStorage = localStorage.getItem("todoList");
-		let todoListArray = JSON.parse(getLocalStorage);
+		checkAndParseLocalStorage();
+
+		// Grab todo and its index
 		const clearTarget = evt.target.parentElement.previousSibling.textContent;
 		const index = todoListArray.indexOf(clearTarget);
+
+		// Use index to remove todo from the list
 		todoListArray.splice(index, 1);
+
+		// Save the updated array to local storage
 		localStorage.setItem("todoList", JSON.stringify(todoListArray));
-		todoListContainer.innerHTML = "";
-		todoListArray.forEach((el) => {
-			displayTodo(el);
-		});
+
+		renderTodoList();
+
 		todosRemaining.textContent = todoListArray.length;
 	}
 });
@@ -52,43 +73,40 @@ newTodoInput.addEventListener("keyup", () => {
 	}
 });
 
-// Add todo
-newTodoAddBtn.addEventListener("click", () => {
-	let todoListArray;
-	let getLocalStorage = localStorage.getItem("todoList");
-	if (getLocalStorage === null) {
-		todoListArray = [];
-	} else {
-		todoListArray = JSON.parse(getLocalStorage);
-	}
-	todoListArray.push(newTodoInput.value);
-	localStorage.setItem("todoList", JSON.stringify(todoListArray));
-
-	// Display new todo.
-	displayTodo(newTodoInput.value);
-
-	newTodoInput.value = "";
-
-	newTodoAddBtn.classList.remove("active");
-
-	todosRemaining.textContent = todoListArray.length;
-});
-
 // Clear all
 clearAllBtn.addEventListener("click", () => {
-	let getLocalStorage = localStorage.getItem("todoList");
-	let todoListArray = JSON.parse(getLocalStorage);
+	checkAndParseLocalStorage();
+
+	// Remove all todos in the list
 	todoListArray.splice(0, todoListArray.length);
+
 	localStorage.setItem("todoList", JSON.stringify(todoListArray));
-	todoListContainer.innerHTML = "";
-	todoListArray.forEach((el) => {
-		displayTodo(el);
-	});
+
+	renderTodoList();
+
 	todosRemaining.textContent = todoListArray.length;
 });
 
 // -----Helper Functions----- //
-// Display todo
+// --Check and parse local storage-- //
+function checkAndParseLocalStorage() {
+	let getLocalStorage = localStorage.getItem("todoList");
+	if (!getLocalStorage) {
+		todoListArray = [];
+	} else {
+		todoListArray = JSON.parse(getLocalStorage);
+	}
+}
+
+// --Render todo list from local storage-- //
+function renderTodoList() {
+	todoListContainer.innerHTML = "";
+	todoListArray.forEach((el) => {
+		displayTodo(el);
+	});
+}
+
+// --Display todo-- //
 function displayTodo(todo) {
 	const todoListItem = document.createElement("li");
 	todoListItem.classList.add("todo-list__item");
