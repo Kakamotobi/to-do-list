@@ -27,3 +27,6 @@ Live-site URL: https://to-do-list-omega-teal.vercel.app/
 ## What I Learned/Applied
 
 - Local Storage
+
+## Updates
+- Upon user request, added functionality to allow addition of a todo using the enter key on input.
