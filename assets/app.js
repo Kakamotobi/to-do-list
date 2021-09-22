@@ -67,6 +67,11 @@ todoListContainer.addEventListener("click", (evt) => {
 		const form = document.createElement("form");
 		form.append(input, btn);
 		evt.target.parentElement.parentElement.append(form);
+
+		const focusInput =
+			evt.target.parentElement.parentElement.lastChild.firstChild;
+		focusInput.focus();
+
 		const beforeEdit = evt.target.parentElement.previousSibling;
 		beforeEdit.style.display = "none";
 
