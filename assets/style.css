@@ -71,10 +71,16 @@ h1 {
 	list-style: none;
 }
 
-.todo-list__item:hover > .todo-list__item-clear-btn {
-	transform: translateX(-50px);
+.todo-list__item-desc {
+	display: inline-block;
 }
 
+.todo-list__item:hover > .todo-list__item-edit-btn,
+.todo-list__item:hover > .todo-list__item-clear-btn {
+	transform: translateX(-60px);
+}
+
+.todo-list__item-edit-btn,
 .todo-list__item-clear-btn {
 	height: 20px;
 	width: 20px;
@@ -86,9 +92,23 @@ h1 {
 	transition: 250ms;
 }
 
+.todo-list__item-clear-btn {
+	right: -50px;
+}
+
 .todo-list__item-clear-btn-img {
 	height: 100%;
 	width: 100%;
+}
+
+/* Edit Form */
+.edit-input {
+	width: auto;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid var(--black);
+	outline: none;
+	font-size: 16px;
 }
 
 /* Add Section */

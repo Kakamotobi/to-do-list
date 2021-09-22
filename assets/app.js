@@ -41,11 +41,11 @@ newTodoAddBtn.addEventListener("click", () => {
 // Clear todo
 todoListContainer.addEventListener("click", (evt) => {
 	// Delegate event to image button
-	if (evt.target.nodeName === "IMG") {
+	if (evt.target.id === "clear-btn-img") {
 		checkAndParseLocalStorage();
 
 		// Grab todo and its index
-		const clearTarget = evt.target.parentElement.previousSibling.textContent;
+		const clearTarget = evt.target.parentElement.parentElement.textContent;
 		const index = todoListArray.indexOf(clearTarget);
 
 		// Use index to remove todo from the list
@@ -57,6 +57,36 @@ todoListContainer.addEventListener("click", (evt) => {
 		renderTodoList();
 
 		todosRemaining.textContent = todoListArray.length;
+	}
+	if (evt.target.id === "edit-btn-img") {
+		const input = document.createElement("input");
+		input.classList.add("edit-input");
+		input.value = evt.target.parentElement.previousSibling.textContent;
+		const btn = document.createElement("button");
+		btn.textContent = "save";
+		const form = document.createElement("form");
+		form.append(input, btn);
+		evt.target.parentElement.parentElement.append(form);
+		const beforeEdit = evt.target.parentElement.previousSibling;
+		beforeEdit.style.display = "none";
+
+		form.addEventListener("submit", (evt) => {
+			evt.preventDefault();
+
+			// Use index to replace todo from the list
+			const index = todoListArray.indexOf(beforeEdit.textContent);
+			todoListArray.splice(index, 1, input.value);
+
+			// Get rid of input
+			input.parentElement.removeChild(input);
+
+			// Save the updated array to local storage
+			localStorage.setItem("todoList", JSON.stringify(todoListArray));
+
+			renderTodoList();
+
+			todosRemaining.textContent = todoListArray.length;
+		});
 	}
 });
 
@@ -129,16 +159,36 @@ function renderTodoList() {
 
 // --Display todo-- //
 function displayTodo(todo) {
+	// Todo Item
+	const todoListItemDesc = document.createElement("p");
+	todoListItemDesc.classList.add("todo-list__item-desc");
+	todoListItemDesc.append(todo);
+
 	const todoListItem = document.createElement("li");
 	todoListItem.classList.add("todo-list__item");
+	// Edit Button
+	const todoListItemEditBtn = document.createElement("button");
+	todoListItemEditBtn.classList.add("todo-list__item-edit-btn");
+	const todoListItemEditBtnImg = document.createElement("img");
+	todoListItemEditBtnImg.classList.add("todo-list__item-edit-btn-img");
+	todoListItemEditBtnImg.id = "edit-btn-img";
+	todoListItemEditBtnImg.src = "assets/images/edit-regular.svg";
+	todoListItemEditBtnImg.alt = "Edit Button";
+	// Clear Button
 	const todoListItemClearBtn = document.createElement("button");
 	todoListItemClearBtn.classList.add("todo-list__item-clear-btn");
 	const todoListItemClearBtnImg = document.createElement("img");
 	todoListItemClearBtnImg.classList.add("todo-list__item-clear-btn-img");
+	todoListItemClearBtnImg.id = "clear-btn-img";
 	todoListItemClearBtnImg.src = "assets/images/check-circle-regular.svg";
 	todoListItemClearBtnImg.alt = "Clear Button";
 
 	todoListItemClearBtn.append(todoListItemClearBtnImg);
-	todoListItem.append(todo, todoListItemClearBtn);
+	todoListItemEditBtn.append(todoListItemEditBtnImg);
+	todoListItem.append(
+		todoListItemDesc,
+		todoListItemEditBtn,
+		todoListItemClearBtn
+	);
 	todoListContainer.append(todoListItem);
 }
