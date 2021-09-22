@@ -59,13 +59,19 @@ todoListContainer.addEventListener("click", (evt) => {
 		todosRemaining.textContent = todoListArray.length;
 	}
 	if (evt.target.id === "edit-btn-img") {
-		const input = document.createElement("input");
-		input.classList.add("edit-input");
-		input.value = evt.target.parentElement.previousSibling.textContent;
-		const btn = document.createElement("button");
-		btn.textContent = "save";
+		const editInput = document.createElement("input");
+		editInput.classList.add("edit-form__input");
+		editInput.value = evt.target.parentElement.previousSibling.textContent;
+		const saveBtn = document.createElement("button");
+		saveBtn.classList.add("edit-form__save-btn");
+		const saveBtnImg = document.createElement("img");
+		saveBtnImg.classList.add("edit-form__save-btn-img");
+		saveBtnImg.src = "assets/images/save-regular.svg";
+		saveBtnImg.alt = "Save Button";
+		saveBtn.append(saveBtnImg);
 		const form = document.createElement("form");
-		form.append(input, btn);
+		form.classList.add("edit-form");
+		form.append(editInput, saveBtn);
 		evt.target.parentElement.parentElement.append(form);
 
 		const focusInput =
@@ -80,10 +86,10 @@ todoListContainer.addEventListener("click", (evt) => {
 
 			// Use index to replace todo from the list
 			const index = todoListArray.indexOf(beforeEdit.textContent);
-			todoListArray.splice(index, 1, input.value);
+			todoListArray.splice(index, 1, editInput.value);
 
 			// Get rid of input
-			input.parentElement.removeChild(input);
+			editInput.parentElement.removeChild(editInput);
 
 			// Save the updated array to local storage
 			localStorage.setItem("todoList", JSON.stringify(todoListArray));

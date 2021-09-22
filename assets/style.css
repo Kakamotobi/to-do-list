@@ -96,19 +96,33 @@ h1 {
 	right: -50px;
 }
 
+.todo-list__item-edit-btn-img,
 .todo-list__item-clear-btn-img {
 	height: 100%;
 	width: 100%;
 }
 
 /* Edit Form */
-.edit-input {
+.edit-form__input {
 	width: auto;
 	background: transparent;
 	border: none;
 	border-bottom: 1px solid var(--black);
 	outline: none;
 	font-size: 16px;
+}
+
+.edit-form__save-btn {
+	height: 20px;
+	width: 20px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.edit-form__save-btn-img {
+	height: 100%;
+	width: 100%;
 }
 
 /* Add Section */
