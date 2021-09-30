@@ -30,3 +30,4 @@ Live-site URL: https://to-do-list-omega-teal.vercel.app/
 
 ## Updates
 - Upon user request, added functionality to allow addition of a todo using the enter key on input.
+- Upon user request, added functionality to edit an existing todo.
